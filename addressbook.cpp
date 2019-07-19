@@ -6,7 +6,7 @@ CONTRACT addressbook: public contract{
     public:
         using contract::contract;
 
-        ACTION findcount(uint64_t count){
+        ACTION countaction(uint64_t count){
             address_index addresses(get_self(), get_self().value);
             auto forSecondary = addresses.get_index<"bycount">();
 
@@ -88,17 +88,16 @@ CONTRACT addressbook: public contract{
         }
 
     private:
-        struct [[eosio::table]] person {
+        struct [[eosio::table]] countstruct {
         name user;
-        uint64_t age;
+        uint64_t count;
         
 
         uint64_t primary_key() const { return user.value; }
-        uint64_t by_age() const { return age;}
-        unit64_t get_self() const { return secondary }
+        uint64_t by_count() const { return count;}
   };
 
-  typedef multi_index<"peopletwo"_n, person,
-  indexed_by<"byage"_n, const_mem_fun<person, uint64_t, &person::by_age>>> address_index;
+  typedef multi_index<"counttable"_n, countstruct,
+  indexed_by<"bycount"_n, const_mem_fun<countstruct, uint64_t, &countstruct::by_count>>> count;
 
 };
