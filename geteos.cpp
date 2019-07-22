@@ -13,8 +13,11 @@ CONTRACT geteos: public contract {
             auto itr = mytoken.require_find(sym.code().raw(), "no balance");
 
             print(itr->balance);
+        }
 
-
+        ACTION gettokeninfo(asset token);{
+            //print toekn symbol
+            //print token precision
         }
     
     private:
