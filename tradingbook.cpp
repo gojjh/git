@@ -3,7 +3,7 @@
 
 using namespace eosio;
 
-CONTRACT tradingbook2: public contract {
+CONTRACT tradingbook: public contract {
 public:
 using contract::contract;
 
